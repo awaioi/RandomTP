@@ -1,0 +1,86 @@
+name: RandomTP
+main: org.awaioi.randomtp.RandomTP
+version: 1.3.0
+author: awaioi
+api-version: 1.19
+website: https://awaioi.org
+
+description: >
+  一个功能完整的随机传送插件，支持经济系统、冷却机制、权限管理等。
+  适用于Paper/Spigot服务器，提供安全可靠的随机传送功能。
+
+soft-depend:
+  - Vault
+
+commands:
+  rtp:
+    description: 随机传送主命令
+    usage: |
+      /rtp - 随机传送到安全位置
+      /rtp help - 显示帮助信息
+      /rtp info - 查看传送信息
+      /rtp admin <玩家> - 免费传送玩家(管理员)
+      /rtp bypass <玩家> - 绕过玩家冷却(管理员)
+      /rtp reload - 重载配置(管理员)
+      /rtp setcost <类型> <费用> - 设置传送费用(管理员)
+    permission: rtp.use
+    permission-message: 你没有权限使用此命令
+    permission-default: true
+    aliases:
+      - wild
+      - randomtp
+      - teleport
+      - tp
+    tab-completer: org.awaioi.randomtp.commands.RTPCommand
+
+permissions:
+  rtp.use:
+    description: 基础随机传送权限
+    default: true
+    children:
+      rtp.info: true
+  rtp.info:
+    description: 查看传送信息权限
+    default: true
+  rtp.vip:
+    description: VIP传送权限（更低费用和冷却时间）
+    default: op
+  rtp.vipplus:
+    description: VIP+传送权限（最低费用和冷却时间）
+    default: op
+  rtp.admin:
+    description: 管理员权限（所有命令）
+    default: op
+    children:
+      rtp.use: true
+      rtp.reload: true
+      rtp.setcost: true
+      rtp.free: true
+      rtp.bypass: true
+  rtp.reload:
+    description: 重载配置文件权限
+    default: op
+  rtp.setcost:
+    description: 设置传送费用权限
+    default: op
+  rtp.free:
+    description: 免费传送权限
+    default: op
+  rtp.bypass:
+    description: 绕过冷却权限
+    default: op
+
+# 前缀，用于所有消息
+prefix: "[RTP]"
+
+# 加载优先级
+load: POSTWORLD
+
+# 负载时的世界
+loadbefore:
+  - GriefPrevention
+  - WorldGuard
+
+# 负载后
+after:
+  - EssentialsX

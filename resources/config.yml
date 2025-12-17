@@ -1,0 +1,62 @@
+# 随机传送插件配置文件
+# 完整配置说明文档
+
+# 传送设置
+teleport:
+  range: 1000              # 传送范围（以玩家为中心+-1000格）
+  delay: 3                 # 传送延迟时间（秒）
+  cooldown: 300            # 默认冷却时间（秒）
+
+# 经济设置
+economy:
+  enabled: true            # 是否启用经济系统
+  cost:
+    default: 100          # 普通玩家费用
+    vip: 80               # VIP玩家费用
+    vipplus: 50           # VIP+玩家费用
+
+# 安全传送设置
+safety:
+  min-y: 64               # 最低传送高度
+  max-y: 200              # 最高传送高度
+  avoid-water: true       # 避免水中传送
+  avoid-lava: true        # 避免岩浆传送
+  find-safe-location: true # 寻找安全位置
+  max-tries: 10           # 最大尝试次数
+
+# 消息设置
+messages:
+  prefix: "&8[&6RTP&8] &r"
+  teleporting: "&a正在准备随机传送..."
+  teleported: "&a传送成功！"
+  insufficient-funds: "&c硬币不足！需要 %cost% 硬币"
+  cooldown: "&c还需等待 %time% 秒才能再次传送"
+  no-permission: "&c你没有权限使用此命令"
+  reload-success: "&a配置文件已重载"
+  reload-failed: "&c配置文件重载失败"
+  cost-set: "&a传送费用已设置为 %cost% 硬币"
+  teleport-cancelled: "&c传送已取消"
+  admin-teleport: "&a已为玩家 %player% 执行随机传送"
+  bypass-cooldown: "&a已为玩家 %player% 绕过冷却"
+  info-header: "&8&m---&r &6随机传送信息 &8&m---"
+  info-cost: "&a基础费用: &f%cost% 硬币"
+  info-cooldown: "&a冷却时间: &f%cooldown% 秒"
+  info-range: "&a传送范围: &f%range% 格"
+  # 倒计时消息
+  teleport:
+    countdown: "&e传送将在 &c%seconds% &e秒后执行..."
+
+# 冷却时间设置（基于权限）
+cooldowns:
+  default: 300            # 普通玩家冷却时间
+  vip: 180                # VIP玩家冷却时间
+  vipplus: 120            # VIP+玩家冷却时间
+
+# 权限节点配置
+permissions:
+  rtp.use: "rtp.use"          # 基础传送权限
+  rtp.vip: "rtp.vip"          # VIP传送权限
+  rtp.vipplus: "rtp.vipplus"  # VIP+传送权限
+  rtp.admin: "rtp.admin"      # 管理员权限
+  rtp.bypass: "rtp.bypass"    # 绕过冷却权限
+  rtp.free: "rtp.free"        # 免费传送权限
